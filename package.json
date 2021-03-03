@@ -1,0 +1,68 @@
+{
+  "name": "dirview",
+  "version": "0.0.1",
+  "description": "print directory structure on terminal console",
+  "license": "MIT",
+  "repository": "https://github.com/JE-lee/dirview",
+  "author": {
+    "name": "jelee",
+    "email": "jelee.wu@qq.com",
+    "url": "https://github.com/JE-lee"
+  },
+  "keywords": [
+    "tree",
+    "file structure",
+    "markdown"
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index",
+  "types": "lib/index",
+  "scripts": {
+    "clean": "rimraf lib && rimraf coverage",
+    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
+    "lint": "eslint --fix src/**/*.ts",
+    "prepublishOnly": "npm run build",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "build": "tsc --pretty",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "watch": "npm run build -- --watch",
+    "watch:test": "jest --watch",
+    "dev": "npm run build && concurrently \"npm run watch\" \"nodemon lib/index.js\""
+  },
+  "dependencies": {
+    "commander": "^7.1.0",
+    "fs-extra": "^9.1.0",
+    "globby": "^11.0.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.3",
+    "@types/node": "^10.11.4",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "concurrently": "^5.1.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "jest": "^23.6.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.2.1",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.3",
+    "ts-node": "^7.0.1",
+    "typescript": "^4.2.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "bin": {
+    "dirview": "lib/cli.js"
+  }
+}
